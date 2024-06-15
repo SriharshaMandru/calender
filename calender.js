@@ -9,7 +9,7 @@ const updateCalendar = () => {
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
 
-    const firstDay = new Date(currentYear, currentMonth, 1);
+    const firstDay = new Date(currentYear, currentMonth, 0);
     const lastDay = new Date(currentYear, currentMonth + 1, 0);
     const totalDays = lastDay.getDate();
     const firstDayIndex = firstDay.getDay();
@@ -29,7 +29,7 @@ const updateCalendar = () => {
     // Current month's days
     for (let i = 1; i <= totalDays; i++) {
         const date = new Date(currentYear, currentMonth, i);
-        const activeClass = date.toDateString() === currentDate.toDateString() ? 'active' : '';
+        const activeClass = date.toDateString() === new Date().toDateString() ? 'active' : '';
         datesHTML += `<div class="date ${activeClass}">${i}</div>`;
     }
 
@@ -48,7 +48,7 @@ prevBtn.addEventListener('click', () => {
 })
 
 nextBtn.addEventListener('click', () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
+    currentDate.setMonth(currentDate.getMonth() + 1); 
     updateCalendar();
 })
 
